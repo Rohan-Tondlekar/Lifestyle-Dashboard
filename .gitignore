@@ -10,3 +10,5 @@ dev.db
 dist/
 build/
 .superpowers/
+scripts/.exercisedb_cache.json
+sample-set.zip
