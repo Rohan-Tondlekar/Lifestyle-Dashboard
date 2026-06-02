@@ -1,9 +1,62 @@
 {% extends 'base.html' %}
 {% block title %}Myth Check — Lifestyle Dashboard{% endblock %}
+
 {% block content %}
-<div class="text-center py-24">
-  <div class="text-6xl mb-4">❓</div>
-  <h1 class="text-2xl font-bold mb-2">Myth Check</h1>
-  <p class="text-slate-500 dark:text-slate-400">Coming soon</p>
+
+<h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">Myth Check</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Science-backed verdicts on common health claims.</p>
+
+{% for myth in myths %}
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm mb-6 overflow-hidden">
+
+  <!-- Claim header -->
+  <div class="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <div class="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Claim</div>
+        <h2 class="text-base font-bold text-slate-900 dark:text-slate-100">{{ myth.claim }}</h2>
+      </div>
+      <span class="text-xs px-2.5 py-1 rounded-full font-semibold shrink-0 mt-1
+                   {% if myth.verdict_color == 'green' %}bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300
+                   {% elif myth.verdict_color == 'amber' %}bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300
+                   {% else %}bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300{% endif %}">
+        {{ myth.verdict }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Evidence sections -->
+  <div class="px-5 py-4 space-y-4">
+    {% for section in myth.sections %}
+    <div>
+      <h3 class="text-sm font-semibold text-slate-900 dark:text-slate-100 mb-1.5">{{ section.heading }}</h3>
+      <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{{ section.body }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Verdict -->
+  <div class="px-5 py-3 bg-slate-50 dark:bg-slate-700/50 border-t border-slate-100 dark:border-slate-700">
+    <p class="text-sm text-slate-700 dark:text-slate-200 font-medium">
+      <span class="text-indigo-600 dark:text-blue-400 mr-1">Verdict:</span>{{ myth.verdict_text }}
+    </p>
+  </div>
+
+  <!-- What actually works -->
+  {% if myth.evidence %}
+  <div class="px-5 py-4 border-t border-slate-100 dark:border-slate-700">
+    <h3 class="text-sm font-semibold text-emerald-700 dark:text-emerald-400 mb-2">What actually works:</h3>
+    <ul class="space-y-1">
+      {% for item in myth.evidence %}
+      <li class="text-sm text-slate-600 dark:text-slate-300 flex items-start gap-2">
+        <span class="text-emerald-500 mt-0.5 shrink-0">✓</span>{{ item }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
 </div>
+{% endfor %}
+
 {% endblock %}

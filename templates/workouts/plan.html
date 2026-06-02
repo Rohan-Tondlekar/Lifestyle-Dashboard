@@ -1,9 +1,214 @@
 {% extends 'base.html' %}
 {% block title %}Workouts — Lifestyle Dashboard{% endblock %}
+
 {% block content %}
-<div class="text-center py-24">
-  <div class="text-6xl mb-4">💪</div>
-  <h1 class="text-2xl font-bold mb-2">Workouts</h1>
-  <p class="text-slate-500 dark:text-slate-400">Coming soon</p>
+
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Workouts</h1>
+  <span class="text-sm text-slate-500 dark:text-slate-400">Adjustable DBs up to 21 kg · Yoga mat</span>
 </div>
+
+<!-- Phase tabs -->
+<div class="flex gap-2 mb-6">
+  <button id="tab-1" onclick="showPhase(1)"
+          class="phase-tab active px-4 py-2 rounded-lg text-sm font-semibold transition-colors
+                 bg-indigo-500 dark:bg-blue-600 text-white">
+    Phase 1 — Weeks 1–8
+  </button>
+  <button id="tab-2" onclick="showPhase(2)"
+          class="phase-tab px-4 py-2 rounded-lg text-sm font-semibold transition-colors
+                 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400
+                 border border-slate-200 dark:border-slate-700
+                 hover:bg-slate-50 dark:hover:bg-slate-700">
+    Phase 2 — Weeks 9+
+  </button>
+</div>
+
+<!-- Phase 1 -->
+<div id="phase-1" class="phase-section">
+  <p class="text-sm text-slate-500 dark:text-slate-400 mb-5">
+    Full-body · 3×/week (Mon / Wed / Fri) · 3 sets × 10–12 reps · 60–90 sec rest
+  </p>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+    {% for ex in exercises.phase1 %}
+    {{ exercise_card(ex) }}
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Phase 2 -->
+<div id="phase-2" class="phase-section hidden">
+  <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
+    Upper/Lower split · 4×/week
+  </p>
+  <div class="flex gap-2 mb-5">
+    <button id="tab-upper" onclick="showSplit('upper')"
+            class="split-tab active px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors
+                   bg-indigo-500 dark:bg-blue-600 text-white">
+      Upper Day — Mon + Fri
+    </button>
+    <button id="tab-lower" onclick="showSplit('lower')"
+            class="split-tab px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors
+                   bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400
+                   border border-slate-200 dark:border-slate-700
+                   hover:bg-slate-50 dark:hover:bg-slate-700">
+      Lower Day — Wed
+    </button>
+  </div>
+  <div id="split-upper" class="split-section">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      {% for ex in exercises.phase2_upper %}
+      {{ exercise_card(ex) }}
+      {% endfor %}
+    </div>
+  </div>
+  <div id="split-lower" class="split-section hidden">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      {% for ex in exercises.phase2_lower %}
+      {{ exercise_card(ex) }}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Log a set -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm mb-6">
+  <h2 class="text-base font-bold text-slate-900 dark:text-slate-100 mb-4">Log a Set</h2>
+  <form method="POST" action="{{ url_for('workouts.log') }}"
+        class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+    <div class="col-span-2 sm:col-span-1">
+      <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Exercise</label>
+      <select name="exercise_name" required
+              class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600
+                     bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-slate-100
+                     focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        {% for name in all_exercise_names %}
+        <option value="{{ name }}">{{ name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Weight (kg)</label>
+      <input type="number" name="weight_kg" step="0.5" min="0" max="100" placeholder="8"
+             class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600
+                    bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-slate-100
+                    focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+    <div>
+      <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Reps</label>
+      <input type="number" name="reps" min="1" max="100" placeholder="10"
+             class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600
+                    bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-slate-100
+                    focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+    <div>
+      <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Set #</label>
+      <div class="flex gap-2">
+        <input type="number" name="set_number" min="1" max="10" placeholder="1" value="1"
+               class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 dark:border-slate-600
+                      bg-slate-50 dark:bg-slate-700 text-slate-900 dark:text-slate-100
+                      focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        <button type="submit"
+                class="px-4 py-2 bg-indigo-500 dark:bg-blue-600 hover:bg-indigo-600 dark:hover:bg-blue-700
+                       text-white text-sm font-semibold rounded-lg transition-colors whitespace-nowrap">
+          Log
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Today's logged sets -->
+{% if today_sets %}
+<div class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm">
+  <h2 class="text-base font-bold text-slate-900 dark:text-slate-100 mb-3">Today's Sets</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="text-left text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider border-b border-slate-100 dark:border-slate-700">
+          <th class="pb-2 pr-4">Exercise</th>
+          <th class="pb-2 pr-4">Set</th>
+          <th class="pb-2 pr-4">Weight</th>
+          <th class="pb-2">Reps</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
+        {% for s in today_sets %}
+        <tr>
+          <td class="py-2 pr-4 text-slate-900 dark:text-slate-100 font-medium">{{ s.exercise_name }}</td>
+          <td class="py-2 pr-4 text-slate-500 dark:text-slate-400">{{ s.set_number }}</td>
+          <td class="py-2 pr-4 text-slate-500 dark:text-slate-400">{{ s.weight_kg }} kg</td>
+          <td class="py-2 text-slate-500 dark:text-slate-400">{{ s.reps }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% macro exercise_card(ex) %}
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden flex flex-col">
+  {% if ex.image_url %}
+  <img src="{{ ex.image_url }}" alt="{{ ex.name }}"
+       class="w-full h-36 object-cover bg-slate-100 dark:bg-slate-700">
+  {% else %}
+  <div class="w-full h-36 bg-indigo-50 dark:bg-slate-700 flex items-center justify-center text-4xl">
+    💪
+  </div>
+  {% endif %}
+  <div class="p-4 flex flex-col gap-2 flex-1">
+    <div class="flex items-start justify-between gap-2">
+      <h3 class="font-semibold text-slate-900 dark:text-slate-100 text-sm leading-tight">{{ ex.name }}</h3>
+      <span class="text-xs text-indigo-600 dark:text-blue-400 font-semibold whitespace-nowrap">
+        {{ ex.sets }}×{{ ex.reps }}
+      </span>
+    </div>
+    <div class="text-xs text-slate-500 dark:text-slate-400">{{ ex.muscle_group }}</div>
+    <div class="text-xs text-slate-400 dark:text-slate-500">Rest {{ ex.rest_sec }}s</div>
+    <details class="mt-1">
+      <summary class="text-xs text-indigo-500 dark:text-blue-400 cursor-pointer select-none hover:underline">
+        Form &amp; progression
+      </summary>
+      <div class="mt-2 space-y-1.5">
+        <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">{{ ex.form_cues }}</p>
+        <p class="text-xs text-emerald-600 dark:text-emerald-400 font-medium">↑ {{ ex.progression }}</p>
+      </div>
+    </details>
+  </div>
+</div>
+{% endmacro %}
+
+{% block scripts %}
+<script>
+function showPhase(n) {
+  document.querySelectorAll('.phase-section').forEach(s => s.classList.add('hidden'));
+  document.getElementById('phase-' + n).classList.remove('hidden');
+  document.querySelectorAll('.phase-tab').forEach(t => {
+    t.classList.remove('bg-indigo-500', 'dark:bg-blue-600', 'text-white');
+    t.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400',
+                    'border', 'border-slate-200', 'dark:border-slate-700');
+  });
+  const active = document.getElementById('tab-' + n);
+  active.classList.add('bg-indigo-500', 'dark:bg-blue-600', 'text-white');
+  active.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400',
+                           'border', 'border-slate-200', 'dark:border-slate-700');
+}
+
+function showSplit(s) {
+  document.querySelectorAll('.split-section').forEach(el => el.classList.add('hidden'));
+  document.getElementById('split-' + s).classList.remove('hidden');
+  document.querySelectorAll('.split-tab').forEach(t => {
+    t.classList.remove('bg-indigo-500', 'dark:bg-blue-600', 'text-white');
+    t.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400',
+                    'border', 'border-slate-200', 'dark:border-slate-700');
+  });
+  const active = document.getElementById('tab-' + s);
+  active.classList.add('bg-indigo-500', 'dark:bg-blue-600', 'text-white');
+  active.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400',
+                           'border', 'border-slate-200', 'dark:border-slate-700');
+}
+</script>
 {% endblock %}

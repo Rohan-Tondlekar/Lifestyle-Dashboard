@@ -1,9 +1,42 @@
 {% extends 'base.html' %}
-{% block title %}Shopping — Lifestyle Dashboard{% endblock %}
+{% block title %}Shopping List — Lifestyle Dashboard{% endblock %}
+
 {% block content %}
-<div class="text-center py-24">
-  <div class="text-6xl mb-4">🛒</div>
-  <h1 class="text-2xl font-bold mb-2">Shopping List</h1>
-  <p class="text-slate-500 dark:text-slate-400">Coming soon</p>
+
+<h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-2">Shopping List</h1>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6">dm · Rossmann · Pharmacy · Amazon.de</p>
+
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-x-auto">
+  <table class="w-full text-sm">
+    <thead>
+      <tr class="border-b border-slate-100 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+        <th class="text-left px-4 py-3">Product</th>
+        <th class="text-left px-4 py-3">Purpose</th>
+        <th class="text-left px-4 py-3">Where</th>
+        <th class="text-right px-4 py-3">Cost</th>
+        <th class="text-left px-4 py-3">Priority</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
+      {% for item in items %}
+      <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+        <td class="px-4 py-3 font-medium text-slate-900 dark:text-slate-100">{{ item.product }}</td>
+        <td class="px-4 py-3 text-slate-500 dark:text-slate-400 max-w-xs">{{ item.purpose }}</td>
+        <td class="px-4 py-3 text-slate-500 dark:text-slate-400 whitespace-nowrap">{{ item.where }}</td>
+        <td class="px-4 py-3 text-right text-slate-500 dark:text-slate-400 whitespace-nowrap">{{ item.cost }}</td>
+        <td class="px-4 py-3">
+          <span class="text-xs px-2 py-0.5 rounded-full font-semibold
+                       {% if item.priority == 'High' %}bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300
+                       {% elif item.priority == 'Medium' %}bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300
+                       {% elif item.priority == 'Discuss with doctor' %}bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300
+                       {% else %}bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400{% endif %}">
+            {{ item.priority }}
+          </span>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
+
 {% endblock %}

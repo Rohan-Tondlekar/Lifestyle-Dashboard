@@ -1,9 +1,78 @@
 {% extends 'base.html' %}
 {% block title %}Hair — Lifestyle Dashboard{% endblock %}
+
 {% block content %}
-<div class="text-center py-24">
-  <div class="text-6xl mb-4">💇</div>
-  <h1 class="text-2xl font-bold mb-2">Hair Routine</h1>
-  <p class="text-slate-500 dark:text-slate-400">Coming soon</p>
+
+<h1 class="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-4">Hair</h1>
+
+<!-- Medical warning banner -->
+<div class="bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-amber-700 rounded-xl p-5 mb-6">
+  <div class="flex items-start gap-3">
+    <span class="text-2xl leading-none mt-0.5 shrink-0">⚕️</span>
+    <div>
+      <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-1">Medical Note — Act Early</h3>
+      <p class="text-sm text-amber-700 dark:text-slate-300">
+        The pattern observed (temple recession + crown thinning at 24) is characteristic of
+        <strong>androgenic alopecia</strong>. Ketoconazole + zinc + scalp massage are supportive.
+        The two evidence-based medical treatments are <strong>Minoxidil</strong> (topical, OTC in Germany
+        — "Regaine Männer" at dm/Rossmann) and <strong>Finasteride</strong> (oral, prescription only).
+        See a Hautarzt to confirm diagnosis and guide treatment. Earlier = more hair preserved.
+      </p>
+    </div>
+  </div>
 </div>
+
+<!-- Product analysis cards -->
+<div class="mb-8">
+  <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Product Analysis</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {% for p in products %}
+    <div class="bg-white dark:bg-slate-800 rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-sm">
+      <div class="flex items-start justify-between gap-2 mb-2">
+        <h3 class="font-semibold text-slate-900 dark:text-slate-100 text-sm leading-tight">{{ p.name }}</h3>
+        <span class="text-xs px-2 py-0.5 rounded-full shrink-0 whitespace-nowrap
+                     {% if p.verdict_color == 'green' %}bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300
+                     {% elif p.verdict_color == 'blue' %}bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300
+                     {% elif p.verdict_color == 'amber' %}bg-amber-100 dark:bg-amber-900 text-amber-700 dark:text-amber-300
+                     {% else %}bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400{% endif %}">
+          {{ p.verdict }}
+        </span>
+      </div>
+      <p class="text-xs text-slate-600 dark:text-slate-300 mb-3">{{ p.verdict_detail }}</p>
+      <div class="text-xs text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-700 pt-2 space-y-0.5">
+        <div><span class="font-medium text-slate-500 dark:text-slate-400">Use:</span> {{ p.usage }}</div>
+        <div><span class="font-medium text-slate-500 dark:text-slate-400">Where:</span> {{ p.where }} · {{ p.cost }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Full routine table -->
+<div>
+  <h2 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-4">Full Routine</h2>
+  <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
+    <table class="w-full text-sm">
+      <thead>
+        <tr class="border-b border-slate-100 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+          <th class="text-left px-4 py-3 w-8">#</th>
+          <th class="text-left px-4 py-3">Action</th>
+          <th class="text-left px-4 py-3">Frequency</th>
+          <th class="text-left px-4 py-3">Product / Detail</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-50 dark:divide-slate-700">
+        {% for step in routine %}
+        <tr class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+          <td class="px-4 py-3 text-indigo-500 dark:text-blue-400 font-bold">{{ step.step }}</td>
+          <td class="px-4 py-3 font-medium text-slate-900 dark:text-slate-100">{{ step.action }}</td>
+          <td class="px-4 py-3 text-slate-500 dark:text-slate-400 whitespace-nowrap">{{ step.frequency }}</td>
+          <td class="px-4 py-3 text-slate-600 dark:text-slate-300">{{ step.product }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 {% endblock %}
