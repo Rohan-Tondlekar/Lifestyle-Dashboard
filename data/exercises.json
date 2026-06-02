@@ -290,5 +290,157 @@
       "form_cues": "Hands behind head, rotate elbow to opposite knee, extend other leg, slow and controlled",
       "progression": "Slow tempo → add hold at peak contraction"
     }
-  ]
+  ],
+  "band_exercises": {
+    "phase1_additions": [
+      {
+        "name": "Band Pull-Apart",
+        "muscle_group": "Rear delts, external rotators",
+        "sets": "3",
+        "reps": "15–20",
+        "rest_sec": 45,
+        "form_cues": "Hold band at chest width, palms down. Pull apart until straight line across chest, squeeze shoulder blades hard, 2 sec hold, controlled return. Arms stay at shoulder height.",
+        "progression": "Light band → medium → heavy → 4 sec hold at end",
+        "why_band": "Fills rear-delt gap dumbbells can't address. Counters anterior chain dominance.",
+        "anchor": "none — hold between both hands",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Band Face Pull",
+        "muscle_group": "Rear delts, upper traps, external rotators",
+        "sets": "3",
+        "reps": "12–15",
+        "rest_sec": 60,
+        "form_cues": "Grip band thumbs-up in W position. Pull to forehead, elbows high and flared ≥90°. Externally rotate at end — wrists end up behind ears. Hold 1 sec. Elbows never drop below shoulder height.",
+        "progression": "Light 15 reps → medium 12 → heavy 10 → 4 sec slow return",
+        "why_band": "Ascending resistance — hardest at full contraction — exactly what rotator cuff work needs.",
+        "anchor": "door handle or post at face height",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Banded Hip Thrust",
+        "muscle_group": "Glutes max, hip abductors",
+        "sets": "3",
+        "reps": "12",
+        "rest_sec": 75,
+        "form_cues": "Loop band just above knees. Upper back on mat edge, feet flat. Actively push knees out against band throughout. Drive hips to full extension, posterior tilt at top, hold 1 sec.",
+        "progression": "Band only → band + 8 kg DB → band + 16 kg DB → 3 sec pause at top",
+        "why_band": "Adds abduction resistance — 30% higher glute med activation vs standard hip thrust (2019 EMG study).",
+        "anchor": "none — loop above knees",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Banded Lateral Walk",
+        "muscle_group": "Glute med, TFL, abductors",
+        "sets": "2",
+        "reps": "15 steps each direction",
+        "rest_sec": 45,
+        "form_cues": "Band above knees or at ankles. Half squat position throughout, toes slightly out. Step sideways controlled — don't let feet fully meet. Maintain upright torso. Keep tension constant.",
+        "progression": "Band above knees → below knees → at ankles → heavier band at ankles",
+        "why_band": "Glute med weakness is #1 cause of IT band syndrome and runner's knee in beginners.",
+        "anchor": "none — loop above knees or around ankles",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Banded Push-Up",
+        "muscle_group": "Chest, triceps, anterior deltoid",
+        "sets": "3",
+        "reps": "8–10",
+        "rest_sec": 75,
+        "form_cues": "Loop band across upper back, hold ends under palms. Standard push-up form. Band adds peak resistance at lockout where bodyweight drops off.",
+        "progression": "Light band 12 reps → medium 10 → heavy 8 → explosive reps",
+        "why_band": "Ascending force curve — constant tension throughout ROM increases time under tension.",
+        "anchor": "across upper back — hold ends under palms",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Banded Goblet Squat",
+        "muscle_group": "Quads, glutes, hip abductors",
+        "sets": "3",
+        "reps": "10–12",
+        "rest_sec": 90,
+        "form_cues": "Loop band just above knees. Hold DB at chest as normal. Actively push knees out against band throughout descent and ascent — cues correct knee tracking.",
+        "progression": "Light band + 10 kg DB → medium band + 16 kg → heavy band + 21 kg → 3 sec pause at bottom",
+        "why_band": "Forces valgus correction and pre-activates glute med before the squat load.",
+        "anchor": "none — loop above knees",
+        "image_url": null,
+        "equipment": "band"
+      }
+    ],
+    "phase2_upper_additions": [
+      {
+        "name": "Band Chest Fly",
+        "muscle_group": "Chest (sternal head), anterior deltoid",
+        "sets": "3",
+        "reps": "12–15",
+        "rest_sec": 60,
+        "form_cues": "Anchor band at chest height behind you. One end per hand. Slight elbow bend, arc hands together in front of chest. Control return — 3 sec eccentric. Hands meet at centre, don't cross.",
+        "progression": "Light band → step further from anchor → heavier band → 3 sec hold at peak",
+        "why_band": "Full horizontal adduction ROM — the movement the chest is anatomically designed for. Completes chest development alongside DB bench.",
+        "anchor": "door handle or post at chest height, face away",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Band Tricep Pushdown",
+        "muscle_group": "Triceps (all heads)",
+        "sets": "3",
+        "reps": "12–15",
+        "rest_sec": 60,
+        "form_cues": "Anchor band above head. Elbows pinned to sides at 90°. Push hands down to full extension, squeeze 1 sec. Controlled return. Don't let elbows flare. Slight forward hip lean.",
+        "progression": "Light band → medium → heavy → single arm",
+        "why_band": "Hits lateral and medial heads with peak contraction at full extension. Completes tricep development alongside DB overhead extension.",
+        "anchor": "door frame or high anchor point overhead",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Band Pull-Apart Warm-Up",
+        "muscle_group": "Rear delts, rotator cuff",
+        "sets": "2",
+        "reps": "15",
+        "rest_sec": 0,
+        "form_cues": "Same as pull-apart. Do this before your first pressing exercise as a prehab superset with face pull.",
+        "progression": "Consistency over intensity — this is activation, not a work set",
+        "why_band": "Activates rotator cuff before heavy DB bench and shoulder press — reduces shoulder impingement risk.",
+        "anchor": "none — hold between both hands",
+        "image_url": null,
+        "equipment": "band",
+        "is_warmup": true
+      }
+    ],
+    "phase2_lower_additions": [
+      {
+        "name": "Banded Romanian Deadlift",
+        "muscle_group": "Hamstrings, glutes",
+        "sets": "4",
+        "reps": "10",
+        "rest_sec": 90,
+        "form_cues": "Stand on band, hold both ends alongside DBs. Standard RDL form. Band adds resistance at hip extension — the hardest point. Maintain neutral spine — don't let band pull you forward at bottom.",
+        "progression": "Light band + 16 kg DB → medium band + 18 kg → heavy band + 18 kg → single leg",
+        "why_band": "Creates peak load at lockout — demands hip extension harder than DBs alone.",
+        "anchor": "stand on centre of band — hold both ends",
+        "image_url": null,
+        "equipment": "band"
+      },
+      {
+        "name": "Banded Lateral Walk + Clamshell Superset",
+        "muscle_group": "Glute med, external hip rotators",
+        "sets": "2",
+        "reps": "15 steps + 15 clamshells each side",
+        "rest_sec": 60,
+        "form_cues": "Lateral walk: band above knees, half squat, step sideways. Clamshells: lie on side, band above knees, hips stacked, rotate top knee up without rolling hips back. Hold 1 sec, lower controlled.",
+        "progression": "Light band above knees → heavier band → band at ankles for walk",
+        "why_band": "Full abductor/external rotator complex — prevents 80% of running injuries in beginners.",
+        "anchor": "none — loop above knees",
+        "image_url": null,
+        "equipment": "band"
+      }
+    ]
+  }
 }
