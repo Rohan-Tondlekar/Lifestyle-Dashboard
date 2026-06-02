@@ -3,16 +3,20 @@
 Fetches exercise GIF URLs from ExerciseDB via RapidAPI and writes them to data/exercises.json.
 
 Strategy:
-  1. Load the local exercise name list from sample-set/exerciseList.json (no API calls).
-  2. Match each of our exercises against that list using aliases + word-overlap scoring.
-  3. Fetch GIF URLs from the API only for successfully matched exercises (1 call each).
+  1. Download full exercise database (~1300 exercises) with pagination
+  2. Cache it locally to .exercisedb_cache.json (subsequent runs load instantly)
+  3. Match our exercises against the cache by name (fuzzy matching with word overlap)
+  4. Update exercises.json with image_url values
 
 Usage:
-    Windows:    $env:EXERCISEDB_API_KEY="your_key"; python scripts/fetch_wger_images.py
-    macOS/Linux: EXERCISEDB_API_KEY=your_key python scripts/fetch_wger_images.py
+    Windows:    $env:EXERCISEDB_API_KEY="your_key"; python scripts/fetch_wger_images.py --fresh
+    macOS/Linux: EXERCISEDB_API_KEY=your_key python scripts/fetch_wger_images.py --fresh
 
-Free tier: ~500 requests/month. Only matched exercises consume quota.
-Already-cached exercises (image_url is not null) are always skipped.
+Flags:
+    --fresh     Force rebuild the cache (ignores existing .exercisedb_cache.json)
+
+Free tier: ~500 requests/month. Full index = ~13 API calls, then zero calls for matching.
+Already-cached exercises (image_url is not null) are skipped; use --fresh to override.
 """
 import json
 import os
@@ -26,45 +30,9 @@ from urllib.parse import quote
 import requests
 
 EXERCISES_FILE = Path(__file__).parent.parent / 'data' / 'exercises.json'
-NAME_LIST_FILE = Path(__file__).parent.parent / 'sample-set' / 'exerciseList.json'
+CACHE_FILE = Path(__file__).parent / '.exercisedb_cache.json'
 BASE_URL = 'https://exercisedb.p.rapidapi.com'
 RAPIDAPI_HOST = 'exercisedb.p.rapidapi.com'
-
-# Hardcoded aliases: our normalized exercise name → exact ExerciseDB exercise name
-# Derived from sample-set/exerciseList.json
-_ALIASES = {
-    # Dumbbell exercises
-    'dumbbell goblet squat':              'dumbbell goblet squat',
-    'dumbbell bent over row':             'dumbbell bent over row',
-    'dumbbell shoulder press':            'dumbbell seated shoulder press',
-    'dumbbell bicep curl':                'dumbbell biceps curl',
-    'dumbbell lateral raise':             'dumbbell lateral raise',
-    'dumbbell romanian deadlift':         'dumbbell romanian deadlift',
-    'dumbbell biceps curl':               'dumbbell biceps curl',
-    'dumbbell bench press':               'dumbbell bench press',
-    'dumbbell tricep overhead extension': 'dumbbell seated triceps extension',
-    'dumbbell reverse lunge':             'dumbbell rear lunge',
-    'dumbbell calf raise':                'dumbbell single leg calf raise',
-    'dead bug':                           'dead bug',
-    'hanging leg raise':                  'hanging leg raise',
-    'hip thrust':                         'glute bridge two legs on bench (male)',
-    'hip thrust mat':                     'glute bridge two legs on bench (male)',
-    # Band exercises
-    'band pull apart':                    'band reverse fly',
-    'band face pull':                     'band standing rear delt row',
-    'band hip thrust':                    'resistance band hip thrusts on knees',
-    'band push up':                       'band close-grip push-up',
-    'band goblet squat':                  'band squat',
-    'band tricep pushdown':               'band side triceps extension',
-    'band romanian deadlift':             'band stiff leg deadlift',
-    'band chest fly':                     'cable cross-over reverse fly',  # closest concept
-    'band lateral walk':                  'monster walk',
-    # Bodyweight
-    'bicycle crunches':                   'band bicycle crunch',  # best available
-    'plank':                              'front plank with twist',
-    'push up':                            'push-up',
-    'incline push up':                    'incline push-up',
-}
 
 _EXPAND = [('db ', 'dumbbell '), ('banded ', 'band ')]
 _DROP = {'mat', 'warm-up', 'warmup', 'superset', 'clamshell', 'phase', 'v.', 'v'}
@@ -84,62 +52,90 @@ def _word_overlap(term: str, candidate: str) -> int:
     return len(set(term.split()) & set(candidate.split()))
 
 
-def find_db_name(name: str, db_names: list) -> Optional[str]:
-    """Return the exact ExerciseDB name that best matches our exercise name."""
+def build_cache(api_key: str) -> list:
+    """Download all exercises from ExerciseDB and return as list.
+
+    Pagination: limit=100, increments offset. ~1300 exercises = ~13 calls.
+    """
+    print('Building fresh cache from ExerciseDB...')
+    all_exercises = []
+    offset = 0
+    limit = 100
+
+    while True:
+        url = f'{BASE_URL}/exercises?limit={limit}&offset={offset}'
+        try:
+            resp = requests.get(
+                url,
+                headers={'X-RapidAPI-Key': api_key, 'X-RapidAPI-Host': RAPIDAPI_HOST},
+                timeout=10,
+            )
+            if resp.status_code == 429:
+                print('  RATE LIMIT — daily quota exhausted. Try again tomorrow.')
+                sys.exit(1)
+            resp.raise_for_status()
+            batch = resp.json()
+
+            if isinstance(batch, dict) and 'message' in batch:
+                print(f'  API error: {batch.get("message")}')
+                sys.exit(1)
+
+            if not isinstance(batch, list) or not batch:
+                break
+
+            all_exercises.extend(batch)
+            print(f'  Fetched offset {offset}: {len(batch)} exercises ({len(all_exercises)} total)')
+            offset += limit
+            time.sleep(0.2)
+
+        except Exception as e:
+            print(f'  Error fetching batch: {e}')
+            sys.exit(1)
+
+    print(f'Cache complete: {len(all_exercises)} exercises downloaded.\n')
+
+    # Debug: check what fields are available
+    if all_exercises:
+        print(f'Sample exercise fields: {list(all_exercises[0].keys())}\n')
+
+    return all_exercises
+
+
+def find_best_match(name: str, index: list) -> Optional[dict]:
+    """Find best exercise match in the index.
+
+    Returns the full exercise dict (with gifUrl), or None if no good match.
+    Matching priority: exact → substring → word-overlap (min 2 shared words).
+    """
     term = _normalize(name)
 
-    # 1. Hardcoded alias (highest priority)
-    if term in _ALIASES:
-        target = _ALIASES[term]
-        if target is None:
-            return None
-        return target
+    # 1. Exact match (after normalization)
+    for ex in index:
+        if _normalize(ex['name']) == term:
+            return ex
 
-    # 2. Exact match in the name list
-    if term in db_names:
-        return term
+    # 2. Substring match (our term contained in DB name)
+    for ex in index:
+        if term in _normalize(ex['name']):
+            return ex
 
-    # 3. Substring: our term is contained in a DB name
-    for db in db_names:
-        if term in db:
-            return db
-
-    # 4. Best word-overlap (min 3 shared words for safety)
+    # 3. Best word-overlap (minimum 2 shared words)
     best, best_score = None, 0
-    for db in db_names:
-        s = _word_overlap(term, db)
+    for ex in index:
+        s = _word_overlap(term, _normalize(ex['name']))
         if s > best_score:
-            best_score, best = s, db
-    if best_score >= 3:
+            best_score, best = s, ex
+    if best_score >= 2:
         return best
 
     return None
 
 
-def fetch_gif_url(exact_name: str, api_key: str) -> Optional[str]:
-    """Fetch gifUrl from ExerciseDB for an exact exercise name."""
-    try:
-        resp = requests.get(
-            f'{BASE_URL}/exercises/name/{quote(exact_name)}',
-            headers={'X-RapidAPI-Key': api_key, 'X-RapidAPI-Host': RAPIDAPI_HOST},
-            timeout=10,
-        )
-        if resp.status_code == 429:
-            print('  RATE LIMIT — daily quota exhausted. Try again tomorrow.')
-            sys.exit(1)
-        resp.raise_for_status()
-        body = resp.json()
-        if isinstance(body, dict):
-            print(f'  API error: {body.get("message", body)}')
-            return None
-        if body and isinstance(body, list):
-            return body[0].get('gifUrl')
-    except Exception as e:
-        print(f'  Request error: {e}')
-    return None
+def process_exercises(exercises: list, index: list) -> tuple:
+    """Match exercises against index and populate image_url.
 
-
-def process_list(exercises: list, db_names: list, api_key: str) -> tuple:
+    Returns (updated_count, skipped_count).
+    """
     updated, skipped = 0, 0
     for ex in exercises:
         if ex.get('image_url'):
@@ -147,19 +143,18 @@ def process_list(exercises: list, db_names: list, api_key: str) -> tuple:
             skipped += 1
             continue
 
-        db_name = find_db_name(ex['name'], db_names)
-        if db_name is None:
+        match = find_best_match(ex['name'], index)
+        if match is None:
             print(f'  {ex["name"]:45s}  ->  no match in ExerciseDB')
             continue
 
-        url = fetch_gif_url(db_name, api_key)
-        if url:
-            ex['image_url'] = url
-            print(f'  {ex["name"]:45s}  ->  "{db_name}"')
+        gif_url = match.get('gifUrl')
+        if gif_url:
+            ex['image_url'] = gif_url
+            print(f'  {ex["name"]:45s}  ->  "{match["name"]}"')
             updated += 1
         else:
-            print(f'  {ex["name"]:45s}  ->  matched "{db_name}" but no GIF returned')
-        time.sleep(0.4)
+            print(f'  {ex["name"]:45s}  ->  matched "{match["name"]}" (no GIF available)')
 
     return updated, skipped
 
@@ -175,18 +170,26 @@ def main():
         print('Get a free key at: https://rapidapi.com/justin-WFnsXH_t6/api/exercisedb')
         sys.exit(1)
 
-    if not NAME_LIST_FILE.exists():
-        print(f'Error: exercise name list not found at {NAME_LIST_FILE}')
-        print('Expected sample-set/exerciseList.json in the project root.')
-        sys.exit(1)
+    # Check for --fresh flag to rebuild cache
+    force_fresh = '--fresh' in sys.argv
 
-    with open(NAME_LIST_FILE, encoding='utf-8') as f:
-        db_names = [n.lower() for n in json.load(f)]
-    print(f'Loaded {len(db_names)} exercise names from local list.\n')
+    # Load or build cache
+    if CACHE_FILE.exists() and not force_fresh:
+        print(f'Loading cached exercises from {CACHE_FILE.name}...\n')
+        with open(CACHE_FILE, encoding='utf-8') as f:
+            index = json.load(f)
+        print(f'Loaded {len(index)} exercises from cache.\n')
+    else:
+        index = build_cache(api_key)
+        with open(CACHE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(index, f, ensure_ascii=False)
+        print(f'Cached {len(index)} exercises to {CACHE_FILE.name}.\n')
 
+    # Load exercises to update
     with open(EXERCISES_FILE, encoding='utf-8') as f:
         data = json.load(f)
 
+    # Process all exercise sections
     sections = [
         ('phase1',       data.get('phase1', [])),
         ('phase2_upper', data.get('phase2_upper', [])),
@@ -200,15 +203,17 @@ def main():
     total_updated, total_skipped = 0, 0
     for section_name, exercises in sections:
         print(f'=== {section_name} ===')
-        u, s = process_list(exercises, db_names, api_key)
+        u, s = process_exercises(exercises, index)
         total_updated += u
         total_skipped += s
         print()
 
+    # Save updated exercises
     with open(EXERCISES_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
     print(f'Done. Updated {total_updated} exercises. Skipped {total_skipped} already cached.')
+    print(f'  Cache file: {CACHE_FILE.name} ({len(index)} exercises)')
 
 
 if __name__ == '__main__':
