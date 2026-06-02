@@ -1,0 +1,294 @@
+{
+  "phase1": [
+    {
+      "name": "Push-up",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1551/a6a9e561-3965-45c6-9f2b-ee671e1a3a45.png",
+      "muscle_group": "Chest, triceps, anterior deltoid",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 75,
+      "form_cues": "Hands shoulder-width, elbows 45° from body, lower chest to ~2 cm from floor, full lockout at top",
+      "progression": "Standard → feet elevated → archer push-ups → add DB row superset"
+    },
+    {
+      "name": "DB Goblet Squat",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Quads, glutes, core",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 90,
+      "form_cues": "Hold 1 DB at chest, feet shoulder-width, knees track over toes, sit back not just down, chest up",
+      "progression": "10 kg → 14 kg → 21 kg → pause at bottom 3 sec"
+    },
+    {
+      "name": "DB Romanian Deadlift",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1652/0306c8c0-70cc-45d4-92de-6fa72ceaa834.webp",
+      "muscle_group": "Hamstrings, glutes, lower back",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 90,
+      "form_cues": "Hinge at hips, soft knee bend, DBs travel close to legs, feel hamstring stretch at bottom, drive hips forward at top",
+      "progression": "12 kg → 16 kg → 21 kg → single-leg variant"
+    },
+    {
+      "name": "DB Bent-over Row",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Lats, rhomboids, biceps",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 90,
+      "form_cues": "Hinge 45°, DBs hang, pull elbows to hips, squeeze shoulder blades at top, controlled negative",
+      "progression": "8 kg → 14 kg → 21 kg → chest-supported variant"
+    },
+    {
+      "name": "DB Shoulder Press",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Deltoids, upper traps, triceps",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 90,
+      "form_cues": "Seated or standing, DBs at ear height, press straight up, slight forward lean, no flare",
+      "progression": "8 kg → 12 kg → 18 kg → Arnold press"
+    },
+    {
+      "name": "DB Bicep Curl",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1012/8270fdb8-28f1-4eff-b410-af8642085b3f.png",
+      "muscle_group": "Biceps, brachialis",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 60,
+      "form_cues": "Elbows pinned to sides, full ROM, 3 sec negative, no body swing",
+      "progression": "8 kg → 12 kg → 16 kg → hammer curl superset"
+    },
+    {
+      "name": "Plank",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1022/f74644fa-f43e-46bd-8603-6e3a2ee8ee2d.jpg",
+      "muscle_group": "Core — transverse abdominis, obliques",
+      "sets": "3",
+      "reps": "20–45 sec",
+      "rest_sec": 60,
+      "form_cues": "Forearms down, body flat, glutes squeezed, hips don't sag or pike, breathe normally",
+      "progression": "20 sec → 45 sec → 60 sec → RKC plank"
+    },
+    {
+      "name": "Dead Bug",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Deep core, anti-extension",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 60,
+      "form_cues": "Lower back pressed into mat, extend opposite arm and leg, breathe out on extension, never lose lower back contact",
+      "progression": "Bodyweight → add 2 kg DB in extended hand"
+    },
+    {
+      "name": "DB Lateral Raise",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1378/7c1fcf34-fb7e-45e7-a0c1-51f296235315.jpg",
+      "muscle_group": "Medial deltoid",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 60,
+      "form_cues": "Slight forward lean, raise to shoulder height, thumbs slightly down, 3 sec descent, no momentum",
+      "progression": "4 kg → 8 kg → 12 kg → 4 sec up / 4 sec down tempo"
+    },
+    {
+      "name": "Hip Thrust (mat)",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1642/a81ad922-caf5-47f8-99b4-640cb0717436.webp",
+      "muscle_group": "Glutes, hamstrings",
+      "sets": "3",
+      "reps": "10–12",
+      "rest_sec": 75,
+      "form_cues": "Upper back on mat edge, feet flat, drive hips up squeezing glutes at top, hold 1 sec, lower controlled",
+      "progression": "Bodyweight → DB on hips → two DBs → pause variant"
+    }
+  ],
+  "phase2_upper": [
+    {
+      "name": "DB Bench Press",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/61/Close-grip-bench-press-1.png",
+      "muscle_group": "Chest, triceps, anterior deltoid",
+      "sets": "4",
+      "reps": "8–10",
+      "rest_sec": 90,
+      "form_cues": "Lie on mat, DBs at chest, press up and slightly in, lower with control, slight arch in lower back",
+      "progression": "10 kg → 14 kg → 18 kg → pause at chest 2 sec"
+    },
+    {
+      "name": "DB Row",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1022/f74644fa-f43e-46bd-8603-6e3a2ee8ee2d.jpg",
+      "muscle_group": "Lats, rhomboids, biceps",
+      "sets": "4",
+      "reps": "10",
+      "rest_sec": 90,
+      "form_cues": "Hinge 45°, pull elbows to hips, squeeze at top, 3 sec negative",
+      "progression": "14 kg → 18 kg → 21 kg"
+    },
+    {
+      "name": "Incline Push-up",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1551/a6a9e561-3965-45c6-9f2b-ee671e1a3a45.png",
+      "muscle_group": "Lower chest, triceps",
+      "sets": "3",
+      "reps": "12",
+      "rest_sec": 60,
+      "form_cues": "Hands on elevated surface (chair height), body straight, elbows 45° from body",
+      "progression": "Chair height → lower surface → deficit push-up"
+    },
+    {
+      "name": "DB Shoulder Press",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Deltoids, upper traps, triceps",
+      "sets": "3",
+      "reps": "10",
+      "rest_sec": 90,
+      "form_cues": "DBs at ear height, press straight up, control the descent",
+      "progression": "10 kg → 14 kg → 18 kg"
+    },
+    {
+      "name": "DB Lateral Raise",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1378/7c1fcf34-fb7e-45e7-a0c1-51f296235315.jpg",
+      "muscle_group": "Medial deltoid",
+      "sets": "3",
+      "reps": "12–15",
+      "rest_sec": 60,
+      "form_cues": "Slight forward lean, raise to shoulder height, 3 sec descent, no momentum",
+      "progression": "6 kg → 10 kg → 12 kg"
+    },
+    {
+      "name": "DB Bicep Curl",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1012/8270fdb8-28f1-4eff-b410-af8642085b3f.png",
+      "muscle_group": "Biceps, brachialis",
+      "sets": "3",
+      "reps": "12",
+      "rest_sec": 60,
+      "form_cues": "Elbows pinned, full ROM, 3 sec negative",
+      "progression": "10 kg → 14 kg → 16 kg"
+    },
+    {
+      "name": "DB Tricep Overhead Extension",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Triceps (long head)",
+      "sets": "3",
+      "reps": "12",
+      "rest_sec": 60,
+      "form_cues": "Hold 1 DB with both hands overhead, elbows close to head, lower DB behind head, press back up",
+      "progression": "8 kg → 12 kg → 16 kg"
+    },
+    {
+      "name": "Face Pull (towel/band)",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1639/8927346e-f5ca-4795-bdf1-5ac9309401e7.webp",
+      "muscle_group": "Rear deltoid, external rotators, upper traps",
+      "sets": "3",
+      "reps": "15",
+      "rest_sec": 60,
+      "form_cues": "Pull to face level, elbows high and wide, external rotate at end of movement",
+      "progression": "Resistance band → heavier band"
+    }
+  ],
+  "phase2_lower": [
+    {
+      "name": "DB Goblet Squat",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Quads, glutes, core",
+      "sets": "4",
+      "reps": "10",
+      "rest_sec": 90,
+      "form_cues": "Hold 1 DB at chest, feet shoulder-width, knees track over toes, full depth, chest up",
+      "progression": "14 kg → 18 kg → 21 kg"
+    },
+    {
+      "name": "DB Romanian Deadlift",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1652/0306c8c0-70cc-45d4-92de-6fa72ceaa834.webp",
+      "muscle_group": "Hamstrings, glutes, lower back",
+      "sets": "4",
+      "reps": "10",
+      "rest_sec": 90,
+      "form_cues": "Hinge at hips, feel hamstring stretch at bottom, drive hips forward",
+      "progression": "16 kg → 18 kg → 21 kg"
+    },
+    {
+      "name": "DB Reverse Lunge",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Quads, glutes, hamstrings",
+      "sets": "3",
+      "reps": "10 each leg",
+      "rest_sec": 75,
+      "form_cues": "Step back, lower back knee toward floor, keep front shin vertical, push through front heel to return",
+      "progression": "Bodyweight → 8 kg DBs → 12 kg DBs"
+    },
+    {
+      "name": "Hip Thrust",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1642/a81ad922-caf5-47f8-99b4-640cb0717436.webp",
+      "muscle_group": "Glutes, hamstrings",
+      "sets": "3",
+      "reps": "12",
+      "rest_sec": 75,
+      "form_cues": "Upper back on mat, DB on hips, drive up, squeeze glutes at top, hold 1 sec",
+      "progression": "DB on hips: 12 kg → 16 kg → 21 kg"
+    },
+    {
+      "name": "DB Calf Raise",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1243/53d4fabe-c994-4907-873f-8d82813a9832.png",
+      "muscle_group": "Gastrocnemius, soleus",
+      "sets": "3",
+      "reps": "15",
+      "rest_sec": 60,
+      "form_cues": "Stand on edge of step, full range of motion, hold at top 1 sec",
+      "progression": "Bodyweight → 8 kg DBs → 14 kg DBs"
+    },
+    {
+      "name": "Plank",
+      "wger_id": null,
+      "image_url": "https://wger.de/media/exercise-images/1022/f74644fa-f43e-46bd-8603-6e3a2ee8ee2d.jpg",
+      "muscle_group": "Core — transverse abdominis, obliques",
+      "sets": "3",
+      "reps": "45–60 sec",
+      "rest_sec": 60,
+      "form_cues": "Forearms down, body flat, glutes squeezed, breathe normally",
+      "progression": "60 sec → RKC plank → plank with reach"
+    },
+    {
+      "name": "Hanging Leg Raise",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Hip flexors, lower abs",
+      "sets": "3",
+      "reps": "10",
+      "rest_sec": 60,
+      "form_cues": "Hang from bar, raise legs to 90°, control the descent, don't swing",
+      "progression": "Knee raises → straight leg raises → L-sit hold"
+    },
+    {
+      "name": "Bicycle Crunches",
+      "wger_id": null,
+      "image_url": null,
+      "muscle_group": "Obliques, rectus abdominis",
+      "sets": "3",
+      "reps": "20",
+      "rest_sec": 60,
+      "form_cues": "Hands behind head, rotate elbow to opposite knee, extend other leg, slow and controlled",
+      "progression": "Slow tempo → add hold at peak contraction"
+    }
+  ]
+}

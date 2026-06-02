@@ -1,0 +1,94 @@
+{
+  "timing_table": [
+    {
+      "time": "With breakfast",
+      "supplement": "Vitamin D3 2000 IU",
+      "with_food": true,
+      "reason": "Fat-soluble — needs dietary fat for ~50% better absorption"
+    },
+    {
+      "time": "With lunch",
+      "supplement": "Zinc 15–25 mg",
+      "with_food": true,
+      "reason": "Prevents nausea; spaced 4–5 hrs from Magnesium to avoid competition"
+    },
+    {
+      "time": "Post-workout",
+      "supplement": "Whey Protein 25–30 g",
+      "with_food": false,
+      "reason": "Leucine delivery during anabolic window. With water or milk."
+    },
+    {
+      "time": "With dinner",
+      "supplement": "Magnesium 500 mg",
+      "with_food": true,
+      "reason": "Reduces GI side effects; sleep benefit via GABA modulation"
+    },
+    {
+      "time": "With dinner",
+      "supplement": "Omega-3 2–3 g (EPA+DHA)",
+      "with_food": true,
+      "reason": "Fat-soluble; better absorbed with a fat-containing meal"
+    },
+    {
+      "time": "Before bed (optional)",
+      "supplement": "Quark 200 g",
+      "with_food": false,
+      "reason": "Slow-release casein for overnight muscle protein synthesis"
+    }
+  ],
+  "current_products": [
+    {
+      "name": "Doppelherz Vitamin D3 2000 IU",
+      "verdict": "Excellent",
+      "verdict_color": "green",
+      "dosage": "1 tablet/day with breakfast",
+      "mechanism": "D3 is the active form (vs D2). Supports calcium absorption, immune function, and muscle protein synthesis.",
+      "note": "Hamburg at 53°N — virtually zero Vitamin D synthesis October–April.",
+      "interactions": "Take in the morning. Do not take within 2 hours of Magnesium."
+    },
+    {
+      "name": "Abtei Magnesium 500 Plus (with B-vitamins, Biotin 150 µg, B12 20 µg)",
+      "verdict": "Very Good",
+      "verdict_color": "green",
+      "dosage": "1 tablet with dinner",
+      "mechanism": "Magnesium supports ATP synthesis, muscle contraction/relaxation, and sleep via GABA modulation. Biotin supports hair keratin production. B12 supports red blood cell formation for running stamina.",
+      "note": "If loose stools occur, split dose (morning + evening).",
+      "interactions": "Do not take within 2 hours of Vitamin D3. Space Zinc by 4–5 hours."
+    }
+  ],
+  "missing_supplements": [
+    {
+      "name": "Omega-3 (EPA/DHA)",
+      "mechanism": "Anti-inflammatory, supports muscle protein synthesis, scalp sebum quality, and skin barrier. Hamburg diet is often low in fatty fish.",
+      "dose": "2–3 g EPA+DHA/day with a meal",
+      "where": "dm: Doppelherz Omega-3. Rossmann: Abtei Omega-3.",
+      "cost": "~€8–12/month",
+      "priority": "High"
+    },
+    {
+      "name": "Zinc 15–25 mg",
+      "mechanism": "Critical for testosterone production, immune function, and hair follicle health. Zinc deficiency is a leading reversible cause of hair loss. Not in current stack.",
+      "dose": "15–25 mg with food (not on empty stomach — causes nausea)",
+      "where": "dm: Doppelherz Zink. Rossmann: Abtei Zink.",
+      "cost": "~€5–7",
+      "priority": "High"
+    },
+    {
+      "name": "Whey Protein",
+      "mechanism": "At 59 kg targeting muscle gain, 130–145 g protein/day is needed. Difficult from food alone. Leucine threshold ~2.5 g per meal triggers muscle protein synthesis.",
+      "dose": "25–30 g post-workout",
+      "where": "Lidl: Beavita/Powerstar. dm: ESN Whey. iHerb: ON Gold Standard.",
+      "cost": "~€20–35/kg",
+      "priority": "High"
+    },
+    {
+      "name": "Creatine Monohydrate",
+      "mechanism": "Most-studied ergogenic aid. Increases phosphocreatine stores, enabling more reps per set. Accelerates lean muscle gain by ~20% vs training alone. Safe at all studied doses.",
+      "dose": "3–5 g/day, any time, with water",
+      "where": "Amazon.de: Creapure brand.",
+      "cost": "~€15–20/500g",
+      "priority": "Optional, high value"
+    }
+  ]
+}

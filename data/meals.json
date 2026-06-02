@@ -1,0 +1,59 @@
+{
+  "day_plans": [
+    {
+      "day_type": "training",
+      "label": "Training Day",
+      "targets": { "kcal": 2500, "protein_g": 140, "carbs_g": 280, "fat_g": 75 },
+      "meals": [
+        { "name": "Breakfast", "time": "07:30", "foods": "80g oats + 250ml milk + 3 eggs + 1 banana", "kcal": 580, "protein_g": 30 },
+        { "name": "Post-workout", "time": "10:00", "foods": "Whey scoop + 200g Quark + fruit", "kcal": 400, "protein_g": 35 },
+        { "name": "Lunch", "time": "13:00", "foods": "150g chicken/salmon + 150g rice + salad + olive oil", "kcal": 650, "protein_g": 45 },
+        { "name": "Snack", "time": "16:00", "foods": "Hüttenkäse 150g + crackers OR nuts 30g + apple", "kcal": 300, "protein_g": 15 },
+        { "name": "Dinner", "time": "18:30", "foods": "200g beef/turkey + 200g sweet potato + vegetables", "kcal": 600, "protein_g": 40 },
+        { "name": "Before bed (optional)", "time": "21:30", "foods": "200g Quark + 1 tsp honey", "kcal": 220, "protein_g": 27 }
+      ]
+    },
+    {
+      "day_type": "rest",
+      "label": "Rest Day",
+      "note": "Slightly lower calories, same protein target. Remove one carb serving. Keep all protein sources.",
+      "targets": { "kcal": 2150, "protein_g": 140, "carbs_g": 230, "fat_g": 65 },
+      "meals": [
+        { "name": "Breakfast", "time": "07:30", "foods": "3 eggs + 200ml milk + 50g oats", "kcal": 460, "protein_g": 28 },
+        { "name": "Lunch", "time": "13:00", "foods": "150g chicken + 100g rice + salad + olive oil", "kcal": 530, "protein_g": 45 },
+        { "name": "Snack", "time": "16:00", "foods": "200g Quark + fruit", "kcal": 280, "protein_g": 26 },
+        { "name": "Dinner", "time": "18:30", "foods": "200g beef/turkey + vegetables + 100g sweet potato", "kcal": 480, "protein_g": 40 },
+        { "name": "Before bed (optional)", "time": "21:30", "foods": "200g Quark", "kcal": 200, "protein_g": 24 }
+      ]
+    },
+    {
+      "day_type": "run",
+      "label": "Run Day",
+      "note": "More carbs pre-run, lighter on fat. No heavy fat in pre-run meal — delays gastric emptying and causes GI distress during running.",
+      "targets": { "kcal": 2400, "protein_g": 140, "carbs_g": 270, "fat_g": 70 },
+      "meals": [
+        { "name": "Breakfast (pre-run)", "time": "07:30", "foods": "80g oats + 250ml milk + 1 banana + 2 eggs (no added fat)", "kcal": 520, "protein_g": 24 },
+        { "name": "Post-run", "time": "09:00", "foods": "Whey scoop + 200g Quark + fruit", "kcal": 400, "protein_g": 35 },
+        { "name": "Lunch", "time": "13:00", "foods": "150g chicken/tuna + 150g rice + salad + olive oil", "kcal": 600, "protein_g": 45 },
+        { "name": "Snack", "time": "16:00", "foods": "Hüttenkäse 150g + crackers", "kcal": 280, "protein_g": 18 },
+        { "name": "Dinner", "time": "18:30", "foods": "200g turkey + 200g sweet potato + vegetables", "kcal": 580, "protein_g": 40 },
+        { "name": "Before bed (optional)", "time": "21:30", "foods": "200g Quark", "kcal": 200, "protein_g": 24 }
+      ]
+    }
+  ],
+  "food_database": [
+    { "food": "Magerquark", "protein_per_100g": 12, "cost": "€0.79–1.19/500g", "where": "Überall" },
+    { "food": "Hühnerbrust", "protein_per_100g": 31, "cost": "€4–6/kg", "where": "Lidl, Kaufland" },
+    { "food": "Eier", "protein_per_100g": 13, "cost": "€2–3/10 Stk", "where": "Überall" },
+    { "food": "Rote Linsen", "protein_per_100g": 26, "cost": "€1.50–2/500g", "where": "Lidl, Aldi" },
+    { "food": "Thunfisch (Dose)", "protein_per_100g": 26, "cost": "€0.99–1.50/Dose", "where": "Überall" },
+    { "food": "Hüttenkäse", "protein_per_100g": 12, "cost": "€1–1.50/250g", "where": "dm, Lidl" }
+  ],
+  "weekly_prep": [
+    "500g Hühnenbrust in oven (25 min, 200°C) → 3–4 portions",
+    "500g Vollkornreis cooked → keeps 4–5 days",
+    "8 hard-boiled eggs → grab-and-go protein",
+    "Big pot of Linsensuppe → 4 portions for ~€2",
+    "Wash and chop vegetables"
+  ]
+}

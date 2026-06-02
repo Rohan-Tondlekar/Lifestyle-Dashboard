@@ -1,0 +1,102 @@
+[
+  {
+    "category": "hair",
+    "name": "Cien Nature Bio-Mandel Shampoo",
+    "verdict": "Good",
+    "verdict_color": "green",
+    "verdict_detail": "Hydrolyzed proteins coat shaft, reduce breakage. No silicones (positive for scalp). Does nothing to address androgenic alopecia specifically.",
+    "usage": "Rotate with ketoconazole shampoo on non-keto wash days",
+    "where": "Lidl",
+    "cost": "~€1.99"
+  },
+  {
+    "category": "hair",
+    "name": "Ketoconazole Shampoo 2% (Nizoral / Terzolin)",
+    "verdict": "Evidence-backed",
+    "verdict_color": "blue",
+    "verdict_detail": "Two mechanisms: (1) antifungal — reduces Malassezia yeast, which drives follicle inflammation. (2) Mild anti-androgenic — weakly blocks DHT at follicle level. Studies show comparable results to 2% minoxidil in some trials.",
+    "usage": "2–3×/week, leave on scalp 3–5 minutes before rinsing",
+    "where": "Pharmacy / Amazon.de",
+    "cost": "€15–18"
+  },
+  {
+    "category": "hair",
+    "name": "Pantene Pro-V Keratin Protect Oil",
+    "verdict": "Use with caution",
+    "verdict_color": "amber",
+    "verdict_detail": "Primarily silicone-based (cyclopentasiloxane, dimethicone). Coats shaft for shine but does not penetrate. Silicone buildup on scalp can contribute to follicle clogging with overuse.",
+    "usage": "1–2 drops on ends only. Never apply to scalp.",
+    "where": "Supermarket",
+    "cost": "~€5"
+  },
+  {
+    "category": "hair",
+    "name": "Silicone Scalp Massage Brush",
+    "verdict": "Recommended",
+    "verdict_color": "green",
+    "verdict_detail": "Scalp massage increases blood flow to dermal papilla, improving nutrient delivery to follicles. A 2016 Japanese study showed 4 min daily scalp massage increased hair thickness over 6 months.",
+    "usage": "During shampooing — 2–3 min circular motions. Light pressure.",
+    "where": "Various",
+    "cost": "€3–8"
+  },
+  {
+    "category": "skin",
+    "name": "Lacura Med Körperlotion 10% Urea",
+    "verdict": "Excellent",
+    "verdict_color": "green",
+    "verdict_detail": "Urea at 10% is a keratolytic humectant — breaks down excess keratin buildup AND draws water into the stratum corneum. Shea butter adds an occlusive layer. Clinical standard for xerosis.",
+    "usage": "Apply within 3 minutes of stepping out of shower to damp skin",
+    "where": "Aldi",
+    "cost": "~€3"
+  },
+  {
+    "category": "skin",
+    "name": "Lacura Med Fussbalsam Glycerin 10% Urea + Panthenol",
+    "verdict": "Excellent",
+    "verdict_color": "green",
+    "verdict_detail": "Same urea keratolysis. Panthenol (pro-vitamin B5) converts to pantothenic acid in skin, accelerates wound healing. Glycerin holds water.",
+    "usage": "Before bed with socks on — overnight occlusion doubles efficacy",
+    "where": "Aldi",
+    "cost": "~€2"
+  },
+  {
+    "category": "skin",
+    "name": "Lacura Med Handcreme Vitamin B3 + Urea 5%",
+    "verdict": "Good",
+    "verdict_color": "green",
+    "verdict_detail": "Niacinamide (B3) strengthens skin barrier by upregulating ceramide synthesis. 5% Urea appropriate for thinner hand skin. Fragrance-free — lower irritation risk.",
+    "usage": "After handwashing, as needed",
+    "where": "Aldi",
+    "cost": "~€2"
+  },
+  {
+    "category": "skin",
+    "name": "NIVEA Reichhaltige Body Milk (Hyaluron + Mandelöl)",
+    "verdict": "Okay",
+    "verdict_color": "amber",
+    "verdict_detail": "Hyaluronic acid in body lotions is largely a marketing angle — the molecule is too large to penetrate skin topically. Functions as a surface humectant only.",
+    "usage": "On less-dry days or less-affected areas",
+    "where": "Supermarket / dm",
+    "cost": "~€5"
+  },
+  {
+    "category": "skin",
+    "name": "Lacura Sun LSF 50 Sonnenspray",
+    "verdict": "Excellent",
+    "verdict_color": "green",
+    "verdict_detail": "Rated 'Sehr Gut 1.5' by Stiftung Warentest. SPF mandatory year-round — UV causes skin barrier degradation through cloud cover.",
+    "usage": "Body SPF. Apply generously before outdoor exposure.",
+    "where": "Aldi",
+    "cost": "~€3"
+  },
+  {
+    "category": "skin",
+    "name": "NIVEA Sun 50+ Citracell",
+    "verdict": "Excellent",
+    "verdict_color": "green",
+    "verdict_detail": "Vitamin C (antioxidant synergistic with SPF) and Hyaluron. Formulated for face — no white cast.",
+    "usage": "Face SPF daily — every single day, including cloudy days",
+    "where": "dm / Rossmann",
+    "cost": "~€8"
+  }
+]

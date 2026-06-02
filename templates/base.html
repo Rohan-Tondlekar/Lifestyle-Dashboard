@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Lifestyle Dashboard{% endblock %}</title>
+  <script>
+    (function () {
+      if (localStorage.getItem('theme') === 'light')
+        document.documentElement.classList.remove('dark');
+    })();
+  </script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body class="bg-slate-50 dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 min-h-screen">
+
+  <nav class="group fixed inset-y-0 left-0 z-50">
+    <div class="w-14 group-hover:w-52 transition-[width] duration-200 ease-in-out h-full
+                bg-indigo-50 dark:bg-[#0a0f1e] flex flex-col overflow-hidden
+                border-r border-indigo-100 dark:border-slate-800 shadow-lg">
+
+      <div class="flex items-center h-14 px-3.5 shrink-0 border-b border-indigo-100 dark:border-slate-800">
+        <span class="text-indigo-600 dark:text-blue-400 font-black text-xl leading-none shrink-0">L</span>
+        <span class="ml-1 font-black text-indigo-950 dark:text-slate-100 text-sm tracking-widest
+                     opacity-0 group-hover:opacity-100 transition-opacity duration-150 whitespace-nowrap">IFESTYLE</span>
+      </div>
+
+      <div class="flex flex-col gap-0.5 p-2 flex-1 overflow-y-auto">
+        {% set pages = [
+          ('dashboard.overview', '📊', 'Overview'),
+          ('schedule.index', '📅', 'Schedule'),
+          ('workouts.plan', '💪', 'Workouts'),
+          ('nutrition.meals', '🥗', 'Nutrition'),
+          ('supplements.schedule_page', '💊', 'Supplements'),
+          ('hair.routine', '💇', 'Hair'),
+          ('skin.routine', '✨', 'Skin'),
+          ('shopping.list_page', '🛒', 'Shopping'),
+          ('myths.index', '❓', 'Myths'),
+        ] %}
+        {% for endpoint, icon, label in pages %}
+        <a href="{{ url_for(endpoint) }}"
+           class="flex items-center gap-3 px-2.5 py-2.5 rounded-lg transition-colors
+                  {% if request.endpoint == endpoint %}
+                    bg-indigo-500 dark:bg-blue-600 text-white
+                  {% else %}
+                    text-slate-500 dark:text-slate-500 hover:bg-indigo-100 dark:hover:bg-slate-800
+                    hover:text-indigo-700 dark:hover:text-slate-200
+                  {% endif %}">
+          <span class="text-xl shrink-0 w-6 text-center leading-none">{{ icon }}</span>
+          <span class="text-sm font-medium whitespace-nowrap
+                       opacity-0 group-hover:opacity-100 transition-opacity duration-150">{{ label }}</span>
+        </a>
+        {% endfor %}
+      </div>
+
+      <div class="p-2 shrink-0 border-t border-indigo-100 dark:border-slate-800">
+        <button onclick="toggleTheme()"
+                class="flex items-center gap-3 px-2.5 py-2.5 rounded-lg w-full transition-colors
+                       text-slate-500 dark:text-slate-500 hover:bg-indigo-100 dark:hover:bg-slate-800
+                       hover:text-indigo-700 dark:hover:text-slate-200">
+          <span id="theme-icon" class="text-xl shrink-0 w-6 text-center leading-none">☀️</span>
+          <span class="text-sm font-medium whitespace-nowrap
+                       opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+                id="theme-label">Light Mode</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="ml-14 min-h-screen">
+    <div class="max-w-5xl mx-auto px-6 py-8">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
