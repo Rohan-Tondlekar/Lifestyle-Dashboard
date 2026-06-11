@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Lifestyle Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Dark mode toggle
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 transition-colors">
+
+<div class="min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-md">
+        <!-- Branding -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-indigo-600 dark:text-blue-400 mb-2">
+                Lifestyle Dashboard
+            </h1>
+            <p class="text-sm text-slate-500 dark:text-slate-400">
+                Personal health & fitness tracking
+            </p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm p-8">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6">Sign In</h2>
+
+            <!-- Error Messages -->
+            {% with messages = get_flashed_messages(category_filter=['error']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="mb-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-sm text-red-700 dark:text-red-300">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Info Messages -->
+            {% with messages = get_flashed_messages(category_filter=['info']) %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="mb-4 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg text-sm text-blue-700 dark:text-blue-300">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Login Form -->
+            <form method="POST" class="space-y-4">
+                <!-- Username -->
+                <div>
+                    <label for="username" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                        Username
+                    </label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        required
+                        autofocus
+                        class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-blue-500 transition-colors"
+                        placeholder="Enter your username"
+                    />
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        class="w-full px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-blue-500 transition-colors"
+                        placeholder="Enter your password"
+                    />
+                </div>
+
+                <!-- Login Button -->
+                <button
+                    type="submit"
+                    class="w-full mt-6 px-4 py-2.5 bg-indigo-500 dark:bg-blue-600 text-white font-semibold rounded-lg hover:bg-indigo-600 dark:hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-blue-500"
+                >
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Footer -->
+            <p class="text-xs text-center text-slate-500 dark:text-slate-400 mt-6">
+                Personal data is protected. Login required.
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
