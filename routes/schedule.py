@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 
 schedule_bp = Blueprint('schedule', __name__, url_prefix='/schedule')
 
@@ -35,6 +36,7 @@ _RUNNING = [
 
 
 @schedule_bp.route('/')
+@login_required
 def index():
     return render_template('schedule/index.html',
                            week=_WEEK,

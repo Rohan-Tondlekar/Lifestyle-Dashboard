@@ -2,6 +2,7 @@ import json
 import os
 
 from flask import Blueprint, current_app, render_template
+from flask_login import login_required
 
 skin_bp = Blueprint('skin', __name__, url_prefix='/skin')
 
@@ -15,6 +16,7 @@ _AM_PM = [
 
 
 @skin_bp.route('/')
+@login_required
 def routine():
     path = os.path.join(current_app.root_path, 'data', 'products.json')
     with open(path, encoding='utf-8') as f:

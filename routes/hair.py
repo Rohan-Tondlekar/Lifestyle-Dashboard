@@ -2,6 +2,7 @@ import json
 import os
 
 from flask import Blueprint, current_app, render_template
+from flask_login import login_required
 
 hair_bp = Blueprint('hair', __name__, url_prefix='/hair')
 
@@ -18,6 +19,7 @@ _ROUTINE = [
 
 
 @hair_bp.route('/')
+@login_required
 def routine():
     path = os.path.join(current_app.root_path, 'data', 'products.json')
     with open(path, encoding='utf-8') as f:

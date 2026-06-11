@@ -1,6 +1,7 @@
 from datetime import date
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from flask_login import login_required
 
 from models import db
 from models.body import BodyMetric
@@ -9,6 +10,7 @@ dashboard_bp = Blueprint('dashboard', __name__)
 
 
 @dashboard_bp.route('/')
+@login_required
 def overview():
     latest = BodyMetric.query.order_by(BodyMetric.date.desc()).first()
     weight = latest.weight_kg if latest else 59.0
@@ -26,6 +28,7 @@ def overview():
 
 
 @dashboard_bp.route('/body/log', methods=['POST'])
+@login_required
 def log_body():
     try:
         weight_kg = float(request.form['weight_kg'])

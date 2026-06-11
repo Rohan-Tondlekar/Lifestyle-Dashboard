@@ -3,6 +3,7 @@ import os
 from datetime import date
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from flask_login import login_required
 
 from models import db
 from models.workout import ExerciseSet, WorkoutLog
@@ -17,6 +18,7 @@ def _load_exercises():
 
 
 @workouts_bp.route('/')
+@login_required
 def plan():
     exercises = _load_exercises()
     today = date.today().isoformat()
@@ -37,6 +39,7 @@ def plan():
 
 
 @workouts_bp.route('/log', methods=['POST'])
+@login_required
 def log():
     today = date.today().isoformat()
     log_entry = WorkoutLog.query.filter_by(date=today).first()

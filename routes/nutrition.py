@@ -3,6 +3,7 @@ import os
 from datetime import date
 
 from flask import Blueprint, current_app, redirect, render_template, request, url_for
+from flask_login import login_required
 
 from models import db
 from models.nutrition import MealLog
@@ -17,6 +18,7 @@ def _load_meals():
 
 
 @nutrition_bp.route('/')
+@login_required
 def meals():
     data = _load_meals()
     today = date.today().isoformat()
@@ -36,6 +38,7 @@ def meals():
 
 
 @nutrition_bp.route('/log', methods=['POST'])
+@login_required
 def log():
     today = date.today().isoformat()
     try:

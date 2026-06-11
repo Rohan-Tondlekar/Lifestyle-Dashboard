@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 
 myths_bp = Blueprint('myths', __name__, url_prefix='/myths')
 
@@ -30,5 +31,6 @@ _MYTHS = [
 
 
 @myths_bp.route('/')
+@login_required
 def index():
     return render_template('myths/index.html', myths=_MYTHS)

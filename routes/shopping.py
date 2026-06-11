@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from flask_login import login_required
 
 shopping_bp = Blueprint('shopping', __name__, url_prefix='/shopping')
 
@@ -16,5 +17,6 @@ _ITEMS = [
 
 
 @shopping_bp.route('/')
+@login_required
 def list_page():
     return render_template('shopping/list.html', items=_ITEMS)

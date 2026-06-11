@@ -2,6 +2,7 @@ import json
 import os
 
 from flask import Blueprint, current_app, render_template
+from flask_login import login_required
 
 supplements_bp = Blueprint('supplements', __name__, url_prefix='/supplements')
 
@@ -13,6 +14,7 @@ def _load():
 
 
 @supplements_bp.route('/')
+@login_required
 def schedule_page():
     data = _load()
     return render_template('supplements/schedule.html',
