@@ -8,9 +8,9 @@
     },
     {
       "time": "With lunch",
-      "supplement": "Zinc 15–25 mg",
+      "supplement": "Mivolis Zink 15 mg + Histidin + Cystein",
       "with_food": true,
-      "reason": "Prevents nausea; spaced 4–5 hrs from Magnesium to avoid competition"
+      "reason": "Prevents nausea; spaced 4–5 hrs from Magnesium to avoid Zn/Mg absorption competition"
     },
     {
       "time": "Post-workout",
@@ -48,32 +48,34 @@
       "interactions": "Take in the morning. Do not take within 2 hours of Magnesium."
     },
     {
-      "name": "Abtei Magnesium 500 Plus (with B-vitamins, Biotin 150 µg, B12 20 µg)",
+      "name": "Abtei Magnesium 500 Plus (mit allen B-Vitaminen, Biotin 150 µg, B12 20 µg)",
       "verdict": "Very Good",
       "verdict_color": "green",
       "dosage": "1 tablet with dinner",
       "mechanism": "Magnesium supports ATP synthesis, muscle contraction/relaxation, and sleep via GABA modulation. Biotin supports hair keratin production. B12 supports red blood cell formation for running stamina.",
       "note": "If loose stools occur, split dose (morning + evening).",
       "interactions": "Do not take within 2 hours of Vitamin D3. Space Zinc by 4–5 hours."
+    },
+    {
+      "name": "Mivolis Zink 15 mg + Histidin + Cystein",
+      "verdict": "Excellent",
+      "verdict_color": "green",
+      "dosage": "1 tablet with lunch (with food, never on empty stomach)",
+      "mechanism": "Zinc 15 mg hits the evidence-based sweet spot for hair follicle health and testosterone synthesis without risking copper depletion (which occurs at sustained >40 mg/day). Histidine chelates zinc, improving intestinal absorption by ~30% vs zinc alone and stabilising it in plasma. Cysteine is a sulphur-containing amino acid and a key building block of keratin — directly supports hair shaft structure and reduces oxidative damage to the follicle. This combination is meaningfully better than plain zinc gluconate for hair-specific goals.",
+      "note": "Mivolis is the dm house brand — solid bioavailability, good value. Do not double-dose thinking more = better: excess zinc competes with copper absorption and can paradoxically worsen hair loss.",
+      "interactions": "Space 4–5 hours from Magnesium (absorption competition). Take with food to prevent nausea. Iron supplements (if ever added) should also be spaced 2+ hours away."
+    },
+    {
+      "name": "Omega-3 (EPA+DHA)",
+      "verdict": "Excellent",
+      "verdict_color": "green",
+      "dosage": "2–3 g EPA+DHA/day with dinner (take with the fat-containing meal)",
+      "mechanism": "EPA and DHA are incorporated into cell membrane phospholipids, reducing pro-inflammatory eicosanoid production (COX/LOX pathway). For your goals: (1) Muscle — omega-3 activates mTORC1 signalling, augmenting muscle protein synthesis by ~50% when combined with resistance training. (2) Hair — improves scalp sebum fatty acid profile, reducing follicle inflammation; clinical trials show reduced hair shedding and increased density at 2–3 g/day. (3) Skin — restores ceramide-like lipids in the stratum corneum, directly addressing dry skin barrier dysfunction. (4) Running recovery — reduces delayed-onset muscle soreness (DOMS) and exercise-induced inflammation.",
+      "note": "Check your product's label for actual EPA+DHA content per capsule — many budget brands list total fish oil (e.g. 1000 mg), but EPA+DHA is only 300 mg of that. Dose to the EPA+DHA number, not total oil. If the product has <500 mg EPA+DHA per capsule, you may need 4–6 capsules to hit the 2 g target.",
+      "interactions": "Take with dinner for best absorption. No significant drug interactions at standard doses. If you ever take blood thinners, flag to a doctor — but irrelevant at your age without prescriptions."
     }
   ],
   "missing_supplements": [
-    {
-      "name": "Omega-3 (EPA/DHA)",
-      "mechanism": "Anti-inflammatory, supports muscle protein synthesis, scalp sebum quality, and skin barrier. Hamburg diet is often low in fatty fish.",
-      "dose": "2–3 g EPA+DHA/day with a meal",
-      "where": "dm: Doppelherz Omega-3. Rossmann: Abtei Omega-3.",
-      "cost": "~€8–12/month",
-      "priority": "High"
-    },
-    {
-      "name": "Zinc 15–25 mg",
-      "mechanism": "Critical for testosterone production, immune function, and hair follicle health. Zinc deficiency is a leading reversible cause of hair loss. Not in current stack.",
-      "dose": "15–25 mg with food (not on empty stomach — causes nausea)",
-      "where": "dm: Doppelherz Zink. Rossmann: Abtei Zink.",
-      "cost": "~€5–7",
-      "priority": "High"
-    },
     {
       "name": "Whey Protein",
       "mechanism": "At 59 kg targeting muscle gain, 130–145 g protein/day is needed. Difficult from food alone. Leucine threshold ~2.5 g per meal triggers muscle protein synthesis.",
