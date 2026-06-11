@@ -19,6 +19,13 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key-change-in-prod')
     PROGRAM_START_DATE = os.environ.get('PROGRAM_START_DATE', '2026-06-02')
 
+    # Session configuration
+    SESSION_COOKIE_SECURE = True  # Only send over HTTPS in production
+    SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access
+    SESSION_COOKIE_SAMESITE = 'Lax'  # CSRF protection
+    PERMANENT_SESSION_LIFETIME = 0  # Session expires when browser closes
+    WTF_CSRF_TIME_LIMIT = None  # No time limit on CSRF tokens
+
     if 'postgresql' in _base_uri:
         _schema = os.environ.get('DB_SCHEMA', 'public')
         SQLALCHEMY_ENGINE_OPTIONS = {
